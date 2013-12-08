@@ -1,0 +1,37 @@
+{
+  "name": "tomahawk-network",
+  "version": "0.0.0",
+  "description": "Tomahawk Network Protocol in JS",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "bops": "~0.1.1"
+  },
+  "devDependencies": {
+    "mocha": "~1.15.1"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/mocha"
+  },
+  "keywords": [
+    "tomahawk",
+    "network"
+  ],
+  "author": "Ben Evans <ben@bensbit.co.uk> (http://bensbit.co.uk)",
+  "license": "MIT",
+  "testling": {
+    "files": "test/*.js",
+    "browsers": [
+      "ie/6..latest",
+      "chrome/20..latest",
+      "firefox/10..latest",
+      "safari/latest",
+      "opera/11.0..latest",
+      "iphone/6",
+      "ipad/6"
+    ],
+    "harness" : "mocha"
+  },
+}
