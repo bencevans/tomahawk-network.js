@@ -11,30 +11,98 @@ describe('lib/frame', function() {
       var payload = new Buffer(0);
       var flags   = {};
 
-      var frameBuffer = frame.pack(flags, payload);
+      var frameBuffer = frame.pack(flags);
       var unpackedBuffer = frame.unpack(frameBuffer);
 
-      assert.equal(unpackedBuffer.payloadLength, 0);
-      assert.deepEqual(unpackedBuffer.flags, {"RAW":0,"JSON":0,"FRAGMENT":0,"COMPRESSED":0,"DBOP":0,"PING":0,"RESERVED_1":0,"SETUP":0});
+      assert.strictEqual(unpackedBuffer.payloadLength, 0);
+      assert.deepEqual(unpackedBuffer.flags, {
+        "RAW": false,
+        "JSON": false,
+        "FRAGMENT": false,
+        "COMPRESSED": false,
+        "DBOP": false,
+        "PING": false,
+        "RESERVED_1": false,
+        "SETUP": false
+      }
+      );
       assert.deepEqual(unpackedBuffer.payload, payload);
 
     });
 
-    it('should set the correct length for a buffer');
-    it('should write given flags');
-    it('should pack JSON and set JSON flag');
+    it('should set the correct length for a buffer', function() {
 
-  });
+      var payload = new Buffer([1, 1, 1, 1]);
+      var flags   = {};
 
-  describe('#unpackFrame', function() {
+      var frameBuffer = frame.pack(flags, payload);
+      var unpackedBuffer = frame.unpack(frameBuffer);
 
-  });
+      assert.strictEqual(unpackedBuffer.payloadLength, payload.length);
+      assert.deepEqual(unpackedBuffer.flags, {
+        "RAW": false,
+        "JSON": false,
+        "FRAGMENT": false,
+        "COMPRESSED": false,
+        "DBOP": false,
+        "PING": false,
+        "RESERVED_1": false,
+        "SETUP": false
+      });
+      assert.deepEqual(unpackedBuffer.payload, payload);
 
-  describe('#decodeFlags', function() {
+    });
 
-  });
+    it('should write given flags', function() {
 
-  describe('#encodeFlags', function() {
+      var payload = new Buffer(0);
+      var flags   = {
+        "RAW": true,
+        "JSON": false,
+        "FRAGMENT": true,
+        "COMPRESSED": true,
+        "DBOP": true,
+        "PING": true,
+        "RESERVED_1": true,
+        "SETUP": true
+      };
+
+      var frameBuffer = frame.pack(flags, payload);
+      var unpackedBuffer = frame.unpack(frameBuffer);
+
+      assert.strictEqual(unpackedBuffer.payloadLength, payload.length);
+      assert.deepEqual(unpackedBuffer.flags, flags);
+      assert.deepEqual(unpackedBuffer.payload, payload);
+
+    });
+
+    it('should pack JSON and set JSON flag', function() {
+
+      var payload = {};
+      var flags   = {
+        "RAW": false,
+        "JSON": true,
+        "FRAGMENT": false,
+        "COMPRESSED": false,
+        "DBOP": false,
+        "PING": false,
+        "RESERVED_1": false,
+        "SETUP": false
+      };
+
+      var frameBuffer = frame.pack({}, payload);
+      var unpackedBuffer = frame.unpack(frameBuffer);
+
+      assert.deepEqual(unpackedBuffer.flags, flags);
+      assert.deepEqual(unpackedBuffer.payload, payload);
+
+    });
+
+    it('should error on a frame length of less than 5', function() {
+      assert.throws(function() {
+        frame.unpack(new Buffer(4));
+      });
+    });
 
   });
 
