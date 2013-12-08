@@ -33,5 +33,5 @@
       "ipad/6"
     ],
     "harness" : "mocha"
-  },
+  }
 }
