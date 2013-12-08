@@ -1,3 +1,4 @@
+'use strict';
 
 var frame  = require('../lib/frame');
 var assert = require('assert');
@@ -16,14 +17,14 @@ describe('lib/frame', function() {
 
       assert.strictEqual(unpackedBuffer.payloadLength, 0);
       assert.deepEqual(unpackedBuffer.flags, {
-        "RAW": false,
-        "JSON": false,
-        "FRAGMENT": false,
-        "COMPRESSED": false,
-        "DBOP": false,
-        "PING": false,
-        "RESERVED_1": false,
-        "SETUP": false
+        RAW : false,
+        JSON: false,
+        FRAGMENT: false,
+        COMPRESSED: false,
+        DBOP: false,
+        PING: false,
+        RESERVED_1: false,
+        SETUP : false
       }
       );
       assert.deepEqual(unpackedBuffer.payload, payload);
@@ -40,14 +41,14 @@ describe('lib/frame', function() {
 
       assert.strictEqual(unpackedBuffer.payloadLength, payload.length);
       assert.deepEqual(unpackedBuffer.flags, {
-        "RAW": false,
-        "JSON": false,
-        "FRAGMENT": false,
-        "COMPRESSED": false,
-        "DBOP": false,
-        "PING": false,
-        "RESERVED_1": false,
-        "SETUP": false
+        RAW: false,
+        JSON: false,
+        FRAGMENT: false,
+        COMPRESSED: false,
+        DBOP: false,
+        PING: false,
+        RESERVED_1: false,
+        SETUP: false
       });
       assert.deepEqual(unpackedBuffer.payload, payload);
 
@@ -57,14 +58,14 @@ describe('lib/frame', function() {
 
       var payload = new Buffer(0);
       var flags   = {
-        "RAW": true,
-        "JSON": false,
-        "FRAGMENT": true,
-        "COMPRESSED": true,
-        "DBOP": true,
-        "PING": true,
-        "RESERVED_1": true,
-        "SETUP": true
+        RAW: true,
+        JSON: false,
+        FRAGMENT: true,
+        COMPRESSED: true,
+        DBOP: true,
+        PING: true,
+        RESERVED_1: true,
+        SETUP: true
       };
 
       var frameBuffer = frame.pack(flags, payload);
@@ -80,14 +81,14 @@ describe('lib/frame', function() {
 
       var payload = {};
       var flags   = {
-        "RAW": false,
-        "JSON": true,
-        "FRAGMENT": false,
-        "COMPRESSED": false,
-        "DBOP": false,
-        "PING": false,
-        "RESERVED_1": false,
-        "SETUP": false
+        RAW: false,
+        JSON: true,
+        FRAGMENT: false,
+        COMPRESSED: false,
+        DBOP: false,
+        PING: false,
+        RESERVED_1: false,
+        SETUP: false
       };
 
       var frameBuffer = frame.pack({}, payload);

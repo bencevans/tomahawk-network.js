@@ -13,7 +13,9 @@
   "devDependencies": {
     "mocha": "~1.15.1",
     "istanbul": "~0.1.46",
-    "coveralls": "~2.6.0"
+    "coveralls": "~2.6.0",
+    "grunt": "~0.4.2",
+    "grunt-contrib-jshint": "~0.7.2"
   },
   "scripts": {
     "test": "./node_modules/.bin/mocha",
