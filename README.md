@@ -5,7 +5,7 @@
 [![Dependency Status](https://david-dm.org/bencevans/tomahawk-network.js.png)](https://david-dm.org/bencevans/tomahawk-network.js)
 
 
-An implementation of [Tomahawk's](http://tomahawk-player.org) in JavaScript intended for Node.js, hopefully also supporting Google Chrome making use of it's chrome.socket API.
+An implementation of [Tomahawk's](http://tomahawk-player.org) communication protocol in JavaScript intended for Node.js, hopefully also supporting Google Chrome making use of it's chrome.socket API.
 
 ## API
 
